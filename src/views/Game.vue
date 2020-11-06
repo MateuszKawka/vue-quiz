@@ -2,7 +2,7 @@
   <div class="game container container-fluid">
     <div class="game__top-bar">
       <Lifes />
-      <p class="score">Score: 52</p>
+      <p class="score">Score: {{score}}</p>
     </div>
     <Timer />
     <Question @next-question="nextQuestion"/>
@@ -21,6 +21,11 @@ export default {
     Question,
     Lifes,
     Timer,
+  },
+  computed: {
+    score() {
+      return this.$store.state.score
+    }
   },
   methods: {
     nextQuestion() {

@@ -1,9 +1,31 @@
 <template>
-  <div class="lifes">
-    <p>
-      <i class="icon icon-heart-on"></i>
-      <i class="icon icon-heart-on"></i>
-      <i class="icon icon-heart"></i>
-    </p>
-  </div>
+  <p class="lifes" ref="lifes">
+    <!-- TO REFACTOR -->
+    <i class="icon icon-heart"  :class="{'icon-heart-on': lifes > 0}"></i>
+    <i class="icon icon-heart"  :class="{'icon-heart-on': lifes > 1}"></i>
+    <i class="icon icon-heart"  :class="{'icon-heart-on': lifes > 2}"></i>
+  </p>
 </template>
+
+<script>
+export default {
+  name: "Lifes",
+  computed: {
+    lifes() {
+      return this.$store.state.lifes;
+    },
+  },
+  watch: {
+    lifes(newValue) {
+      console.log(this.$refs.lifes.childNodes)
+    }
+  }
+};
+</script>
+
+
+<style scoped>
+.icon {
+  margin-left: 2px;
+}
+</style>

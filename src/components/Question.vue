@@ -35,6 +35,9 @@
 
 <script>
 import { shuffleAnswers } from "@/common/helpers";
+import { mapMutations, mapState } from "vuex";
+import { LOSE_LIFE, ADD_POINTS } from "@/store/mutations.types";
+import { ENDGAME_ROUTE } from "@/router/routes";
 
 export default {
   name: "Question",
@@ -42,12 +45,11 @@ export default {
     questionAnswered: false,
   }),
   computed: {
-    questionReady() {
-      return this.$store.state.questionReady;
-    },
-    question() {
-      return this.$store.state.question;
-    },
+    ...mapState({
+      questionReady: "questionReady",
+      question: "question",
+      lifes: "lifes",
+    }),
     answers() {
       return shuffleAnswers([
         ...this.question.incorrect_answers,
@@ -56,6 +58,10 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({
+      loseLife: LOSE_LIFE,
+      addPoints: ADD_POINTS,
+    }),
     isAnswerCorrect(answer) {
       return this.question.correct_answer === answer;
     },
@@ -63,9 +69,11 @@ export default {
       const answer = el.target.innerText;
       if (this.isAnswerCorrect(answer)) {
         el.target.classList.add(`at-btn--success`);
+        this.addPoints();
       } else {
         el.target.classList.add(`at-btn--error`);
         this.showACorrectAnswer();
+        this.loseLife();
       }
       this.questionAnswered = true;
     },
@@ -79,6 +87,16 @@ export default {
     nextQuestion() {
       this.$emit("next-question");
       this.questionAnswered = false;
+    },
+    endLifes() {
+      this.$router.push(ENDGAME_ROUTE.path);
+    },
+  },
+  watch: {
+    lifes(newValue) {
+      if (newValue === 0) {
+        this.endLifes();
+      }
     },
   },
 };

@@ -7,3 +7,8 @@ export const GAME_ROUTE = {
     name: "Game",
     path: "/game"
 }
+
+export const ENDGAME_ROUTE = {
+    name: "Endgame",
+    path: "/endgame"
+}

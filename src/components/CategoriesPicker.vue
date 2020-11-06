@@ -20,7 +20,7 @@ export default {
     pickedCategory: 0,
   }),
   computed: mapState({
-    categories: (state) => state.categories,
+    categories: 'categories'
   }),
   methods: {
     ...mapMutations({
