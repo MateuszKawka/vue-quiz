@@ -28,6 +28,14 @@
           v-if="questionAnswered"
           >Next</at-button
         >
+        <at-button
+          class="next-question-button"
+          type="primary"
+          @click.native="goToEndgame"
+          size="large"
+          v-if="lifes === 0"
+          >Go to endgame</at-button
+        >
       </div>
     </div>
   </div>
@@ -88,15 +96,8 @@ export default {
       this.$emit("next-question");
       this.questionAnswered = false;
     },
-    endLifes() {
+    goToEndgame() {
       this.$router.push(ENDGAME_ROUTE.path);
-    },
-  },
-  watch: {
-    lifes(newValue) {
-      if (newValue === 0) {
-        this.endLifes();
-      }
     },
   },
 };
