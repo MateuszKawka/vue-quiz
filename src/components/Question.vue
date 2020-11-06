@@ -25,7 +25,7 @@
           type="primary"
           @click.native="nextQuestion"
           size="large"
-          v-if="questionAnswered"
+          v-if="questionAnswered && lifes > 0"
           >Next</at-button
         >
         <at-button

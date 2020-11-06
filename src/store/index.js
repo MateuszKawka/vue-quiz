@@ -1,5 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
+
+import highscores from "./highscores.module"
+
 import {
   SET_QUESTIONS,
   SET_CATEGORIES,
@@ -21,6 +24,9 @@ import {
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  modules: {
+    highscores
+  },
   state: {
     question: {},
     questions: [],
@@ -73,6 +79,5 @@ export default new Vuex.Store({
         .then((response) => response.json())
         .then(({ results }) => commit(SET_QUESTIONS, results));
     },
-  },
-  modules: {},
+  }
 });

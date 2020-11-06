@@ -1,5 +1,5 @@
 <template>
-  <div class="game container container-fluid">
+  <div class="game">
     <div class="game__top-bar">
       <Lifes />
       <p class="score">Score: {{score}}</p>

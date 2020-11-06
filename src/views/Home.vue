@@ -1,6 +1,6 @@
 <template>
-  <section class="container-fluid home">
-    <p>Welcome!</p>
+  <section class="section home">
+    <h2 class="section__title ">Welcome!</h2>
 
     <div class="home__category-picker">
       <p>Pick a category:</p>
@@ -16,17 +16,23 @@
     >
       Play game
     </at-button>
+    <router-link :to="HIGHSCORES_ROUTE.path" class="home__highscores-link"
+      >Highscores</router-link
+    >
   </section>
 </template>
 
 <script>
 import { GET_CATEGORIES } from "@/store/actions.types";
 import CategoriesPicker from "@/components/CategoriesPicker";
-import { GAME_ROUTE } from "@/router/routes";
+import { GAME_ROUTE, HIGHSCORES_ROUTE } from "@/router/routes";
 import DifficultyPicker from "@/components/DifficultyPicker.vue";
 
 export default {
   name: "Home",
+  data: () => ({
+    HIGHSCORES_ROUTE,
+  }),
   components: {
     CategoriesPicker,
     DifficultyPicker,
@@ -64,5 +70,9 @@ export default {
 
 .home__start-button {
   margin-top: 20%;
+}
+
+.home__highscores-link {
+  margin-top: 10%;
 }
 </style>

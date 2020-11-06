@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
-import {HOME_ROUTE, GAME_ROUTE, ENDGAME_ROUTE} from "./routes"
+import {HOME_ROUTE, GAME_ROUTE, ENDGAME_ROUTE, HIGHSCORES_ROUTE} from "./routes"
 
 Vue.use(VueRouter)
 
@@ -21,6 +21,11 @@ const routes = [
     path: ENDGAME_ROUTE.path,
     name: ENDGAME_ROUTE.name,
     component: () => import('../views/EndGame.vue')
+  },
+  {
+    path: HIGHSCORES_ROUTE.path,
+    name: HIGHSCORES_ROUTE.name,
+    component: () => import('../views/Highscores.vue')
   }
 
 ]
