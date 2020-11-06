@@ -1,18 +1,43 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <section class="container-fluid">
+    <div class="row at-row">
+      <div class="col-24">
+        <p>Welcome!</p>
+      </div>
+      <div class="col-24">
+        <CategoriesPicker />
+      </div>
+      <div class="col-24">
+        <DifficultyPicker />
+      </div>
+      <div class="col-24">
+        <at-button type="primary" @click.native="startGame">
+          Play game
+        </at-button>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { GET_CATEGORIES } from "@/store/actions.types";
+import CategoriesPicker from "@/components/CategoriesPicker";
+import { GAME_ROUTE } from "@/router/routes";
+import DifficultyPicker from "@/components/DifficultyPicker.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    HelloWorld
-  }
-}
+    CategoriesPicker,
+    DifficultyPicker,
+  },
+  methods: {
+    startGame() {
+      this.$router.push(GAME_ROUTE.path);
+    },
+  },
+  mounted() {
+    this.$store.dispatch(GET_CATEGORIES);
+  },
+};
 </script>
