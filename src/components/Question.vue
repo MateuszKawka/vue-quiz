@@ -5,16 +5,16 @@
     <div class="row at-row flex-center">
       <div class="col-24">
         <div class="answers" ref="answers">
-          <at-button
+          <button
             size="large"
             class="answer-button"
             v-for="answer in answers"
             :key="answer"
-            @click="answerQuestion"
+            @click.stop="answerQuestion"
             :data-answer="answer"
           >
             {{ answer }}
-          </at-button>
+          </button>
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
         <at-button
           class="next-question-button"
           type="primary"
-          @click.native="nextQuestion"
+          @click="nextQuestion"
           size="large"
           v-if="questionAnswered && lifes > 0"
           >Next</at-button
@@ -33,12 +33,13 @@
           type="primary"
           @click.native="goToEndgame"
           size="large"
-          v-if="lifes === 0"
+          v-if="lifes <= 0"
           >Go to endgame</at-button
         >
       </div>
     </div>
   </div>
+  <Spinner v-else />
 </template>
 
 <script>
@@ -46,9 +47,12 @@ import { shuffleAnswers } from "@/common/helpers";
 import { mapMutations, mapState } from "vuex";
 import { LOSE_LIFE, ADD_POINTS } from "@/store/mutations.types";
 import { ENDGAME_ROUTE } from "@/router/routes";
-
+import Spinner from "@/components/Spinner";
 export default {
   name: "Question",
+  components: {
+    Spinner,
+  },
   data: () => ({
     questionAnswered: false,
   }),
@@ -76,10 +80,10 @@ export default {
     answerQuestion(el) {
       const answer = el.target.innerText;
       if (this.isAnswerCorrect(answer)) {
-        el.target.classList.add(`at-btn--success`);
+        el.target.classList.add(`answer-button--correct-answer`);
         this.addPoints();
       } else {
-        el.target.classList.add(`at-btn--error`);
+        el.target.classList.add(`answer-button--wrong-answer`);
         this.showACorrectAnswer();
         this.loseLife();
       }
@@ -88,8 +92,9 @@ export default {
     showACorrectAnswer() {
       this.$refs.answers.childNodes.forEach((el) => {
         if (this.isAnswerCorrect(el.innerText)) {
-          el.classList.add(`at-btn--success`);
+          el.classList.add(`answer-button--correct-answer`);
         }
+        el.disabled = true;
       });
     },
     nextQuestion() {
@@ -125,5 +130,26 @@ export default {
 
 .next-question-button {
   margin-top: 2rem;
+}
+
+.answer-button {
+  font-size: 0.9rem;
+  padding: 0.3rem;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #bbcdee;
+  border-radius: 4px;
+}
+
+.answer-button--correct-answer {
+  background: #36d57d;
+  color: #fff;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.answer-button--wrong-answer {
+  background: #ff6464;
+  color: #fff;
+  border-color: rgba(0, 0, 0, 0);
 }
 </style>

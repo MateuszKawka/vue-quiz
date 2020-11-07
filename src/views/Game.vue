@@ -2,10 +2,10 @@
   <div class="game">
     <div class="game__top-bar">
       <Lifes />
-      <p class="score">Score: {{score}}</p>
+      <p class="score">Score: {{ score }}</p>
     </div>
     <Timer />
-    <Question @next-question="nextQuestion"/>
+    <Question @next-question="nextQuestion" />
   </div>
 </template>
 
@@ -24,8 +24,8 @@ export default {
   },
   computed: {
     score() {
-      return this.$store.state.score
-    }
+      return this.$store.state.score;
+    },
   },
   methods: {
     nextQuestion() {

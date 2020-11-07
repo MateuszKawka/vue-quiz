@@ -1,7 +1,6 @@
 <template>
   <section class="section home">
     <h2 class="section__title ">Welcome!</h2>
-
     <div class="home__category-picker">
       <p>Pick a category:</p>
       <CategoriesPicker />
@@ -24,6 +23,7 @@
 
 <script>
 import { GET_CATEGORIES } from "@/store/actions.types";
+import {INIT_GLOBAL_STATE} from "@/store/mutations.types"
 import CategoriesPicker from "@/components/CategoriesPicker";
 import { GAME_ROUTE, HIGHSCORES_ROUTE } from "@/router/routes";
 import DifficultyPicker from "@/components/DifficultyPicker.vue";
@@ -35,7 +35,7 @@ export default {
   }),
   components: {
     CategoriesPicker,
-    DifficultyPicker,
+    DifficultyPicker
   },
   methods: {
     startGame() {
@@ -44,6 +44,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch(GET_CATEGORIES);
+    this.$store.commit(INIT_GLOBAL_STATE)
   },
 };
 </script>

@@ -3,7 +3,7 @@ export const shuffleAnswers = (answers) => {
 };
 
 export const formatHighscoreDate = (timestamp) => {
-  const ISODate = new Date(timestamp * 1000).toISOString();
+  const ISODate = new Date(timestamp).toISOString();
   return ISODate.replace("Z", "")
     .replace("T", " ")
     .slice(0, 16);

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import highscores from "./highscores.module"
+import highscores from "./highscores.module";
 
 import {
   SET_QUESTIONS,
@@ -13,6 +13,7 @@ import {
   LOSE_LIFE,
   ADD_POINTS,
   SET_DIFFICULTY,
+  INIT_GLOBAL_STATE
 } from "./mutations.types";
 import { GET_CATEGORIES, GET_QUESTIONS } from "./actions.types";
 import {
@@ -23,20 +24,22 @@ import {
 
 Vue.use(Vuex);
 
+const initState = () => ({
+  question: {},
+  questions: [],
+  categories: [],
+  categoryID: 0,
+  questionReady: false,
+  lifes: 3,
+  score: 0,
+  pickedDifficulty: "easy",
+})
+
 export default new Vuex.Store({
   modules: {
-    highscores
+    highscores,
   },
-  state: {
-    question: {},
-    questions: [],
-    categories: [],
-    categoryID: 0,
-    questionReady: false,
-    lifes: 3,
-    score: 0,
-    pickedDifficulty: "easy",
-  },
+  state: initState(),
   mutations: {
     [SET_QUESTIONS]: (state, questions) =>
       (state.questions = [state.questions, ...questions]),
@@ -62,6 +65,7 @@ export default new Vuex.Store({
           break;
       }
     },
+    [INIT_GLOBAL_STATE]: state => state = initState()
   },
   actions: {
     async [GET_CATEGORIES]({ commit }) {
@@ -79,5 +83,5 @@ export default new Vuex.Store({
         .then((response) => response.json())
         .then(({ results }) => commit(SET_QUESTIONS, results));
     },
-  }
+  },
 });
