@@ -1,19 +1,20 @@
 <template>
-  <div class="container" v-if="questionReady">
-    <p class="category">{{ question.category }}</p>
-    <p class="question">{{ question.question }}</p>
+  <div class="container">
+    <Timer @end-time="endTime" ref="timer" :question-answered="questionAnswered"/>
+    <p class="category" v-html="question.category"></p>
+    <p class="question" v-html="question.question"></p>
     <div class="row at-row flex-center">
       <div class="col-24">
         <div class="answers" ref="answers">
           <button
-            size="large"
-            class="answer-button"
-            v-for="answer in answers"
-            :key="answer"
-            @click.stop="answerQuestion"
-            :data-answer="answer"
+              size="large"
+              class="answer-button"
+              v-for="answer in answers"
+              :key="answer"
+              @click.stop="answerQuestion"
+              :data-answer="answer"
+              v-html="answer"
           >
-            {{ answer }}
           </button>
         </div>
       </div>
@@ -21,46 +22,47 @@
     <div class="row">
       <div class="col-24 flex-center">
         <at-button
-          class="next-question-button"
-          type="primary"
-          @click="nextQuestion"
-          size="large"
-          v-if="questionAnswered && lifes > 0"
-          >Next</at-button
+            class="next-question-button"
+            type="primary"
+            @click="nextQuestion"
+            size="large"
+            v-if="questionAnswered && lifes > 0"
+        >Next
+        </at-button
         >
         <at-button
-          class="next-question-button"
-          type="primary"
-          @click.native="goToEndgame"
-          size="large"
-          v-if="lifes <= 0"
-          >Go to endgame</at-button
+            class="next-question-button"
+            type="primary"
+            @click.native="goToEndgame"
+            size="large"
+            v-if="lifes <= 0"
+        >Go to endgame
+        </at-button
         >
       </div>
     </div>
   </div>
-  <Spinner v-else />
 </template>
 
 <script>
-import { shuffleAnswers } from "@/common/helpers";
-import { mapMutations, mapState } from "vuex";
-import { LOSE_LIFE, ADD_POINTS } from "@/store/mutations.types";
-import { ENDGAME_ROUTE } from "@/router/routes";
-import Spinner from "@/components/Spinner";
+import {shuffleAnswers} from "@/common/helpers";
+import {mapMutations, mapState} from "vuex";
+import {LOSE_LIFE, ADD_POINTS} from "@/store/mutations.types";
+import {ENDGAME_ROUTE} from "@/router/routes";
+import Timer from "@/components/Timer"
+
 export default {
   name: "Question",
   components: {
-    Spinner,
+    Timer
   },
   data: () => ({
     questionAnswered: false,
   }),
   computed: {
     ...mapState({
-      questionReady: "questionReady",
       question: "question",
-      lifes: "lifes",
+      lifes: "lifes"
     }),
     answers() {
       return shuffleAnswers([
@@ -84,8 +86,7 @@ export default {
         this.addPoints();
       } else {
         el.target.classList.add(`answer-button--wrong-answer`);
-        this.showACorrectAnswer();
-        this.loseLife();
+        this.badAnswer()
       }
       this.questionAnswered = true;
     },
@@ -97,15 +98,24 @@ export default {
         el.disabled = true;
       });
     },
+    badAnswer() {
+      this.showACorrectAnswer();
+      this.loseLife();
+    },
     nextQuestion() {
       this.$emit("next-question");
+      this.$refs.timer.resetTimer()
       this.questionAnswered = false;
     },
     goToEndgame() {
       this.$router.push(ENDGAME_ROUTE.path);
     },
-  },
-};
+    endTime() {
+      this.badAnswer();
+      this.questionAnswered = true;
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -124,6 +134,7 @@ export default {
   text-align: center;
   font-size: 1rem;
 }
+
 .answer-button {
   margin-top: 0.5rem;
 }

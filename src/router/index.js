@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-
+import store from "@/store/index";
 import {HOME_ROUTE, GAME_ROUTE, ENDGAME_ROUTE, HIGHSCORES_ROUTE} from "./routes"
+import {INIT_GLOBAL_STATE} from "../store/mutations.types";
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,13 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if(to.name === HOME_ROUTE.name) {
+    store.commit(INIT_GLOBAL_STATE)
+  }
+  next()
 })
 
 export default router

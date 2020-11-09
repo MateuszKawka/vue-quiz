@@ -13,7 +13,9 @@ import {
   LOSE_LIFE,
   ADD_POINTS,
   SET_DIFFICULTY,
-  INIT_GLOBAL_STATE
+  INIT_GLOBAL_STATE,
+  SET_TIMER_WORK,
+    SET_END_TIME
 } from "./mutations.types";
 import { GET_CATEGORIES, GET_QUESTIONS } from "./actions.types";
 import {
@@ -33,11 +35,13 @@ const initState = () => ({
   lifes: 3,
   score: 0,
   pickedDifficulty: "easy",
+  timerWork: false,
+  endTime: false
 })
 
 export default new Vuex.Store({
   modules: {
-    highscores,
+    highscores
   },
   state: initState(),
   mutations: {
@@ -65,7 +69,7 @@ export default new Vuex.Store({
           break;
       }
     },
-    [INIT_GLOBAL_STATE]: state => state = initState()
+    [INIT_GLOBAL_STATE]: state =>  Object.assign(state, initState())
   },
   actions: {
     async [GET_CATEGORIES]({ commit }) {
