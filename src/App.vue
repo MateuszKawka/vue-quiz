@@ -1,7 +1,11 @@
 <template>
   <div id="app" class="container container-fluid">
     <transition name="fade" mode="out-in">
-      <router-view />
+      <div class="row at-row flex-center">
+        <div class="col-24 col-xl-12">
+          <router-view />
+        </div>
+      </div>
     </transition>
   </div>
 </template>
@@ -10,7 +14,7 @@
 /* global styles */
 
 .section__title {
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .fade-enter-active,
