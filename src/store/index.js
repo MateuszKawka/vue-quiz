@@ -46,7 +46,7 @@ export default new Vuex.Store({
   state: initState(),
   mutations: {
     [SET_QUESTIONS]: (state, questions) =>
-      (state.questions = [state.questions, ...questions]),
+      (state.questions = [...state.questions, ...questions]),
     [SET_QUESTION]: (state) => (state.question = state.questions.pop()),
     [SET_CATEGORIES]: (state, categories) => (state.categories = categories),
     [SET_CATEGORY_ID]: (state, categoryID) => (state.categoryID = categoryID),

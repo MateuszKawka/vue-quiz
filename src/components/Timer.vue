@@ -28,7 +28,6 @@ export default {
   methods: {
     startTimer() {
       this.timerID = setInterval(() => {
-        console.log('timer')
         if(this.timerValue > 0) {
           this.timerValue -= 10
         }

@@ -10,7 +10,7 @@
               size="large"
               class="answer-button"
               v-for="answer in answers"
-              :key="answer"
+              :key="`${question.question}__${answer}`"
               @click.stop="answerQuestion"
               :data-answer="answer"
               v-html="answer"

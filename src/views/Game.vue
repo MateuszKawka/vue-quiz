@@ -29,6 +29,9 @@ export default {
     },
     questionReady() {
       return this.$store.state.questionReady
+    },
+    questions() {
+      return this.$store.state.questions
     }
   },
   methods: {
@@ -46,8 +49,11 @@ export default {
     });
   },
   watch: {
-    questionReady(v) {
-      console.log(v)
+    questions(newValue) {
+      // if questions count is 2 load more
+      if(newValue.length === 2) {
+        this.$store.dispatch(GET_QUESTIONS)
+      }
     }
   }
 };

@@ -14,11 +14,6 @@ export default {
     lifes() {
       return this.$store.state.lifes;
     },
-  },
-  watch: {
-    lifes(newValue) {
-      console.log(this.$refs.lifes.childNodes)
-    }
   }
 };
 </script>
