@@ -1,5 +1,5 @@
 <template>
-  <at-select :value="pickedCategory" @input="pickCategory" size="large">
+  <at-select :value="pickedCategory" @input="pickCategory" size="large" class="categories-picker">
     <at-option :value="0">All</at-option>
     <at-option
       v-for="category in categories"
@@ -20,7 +20,7 @@ export default {
     pickedCategory: 0,
   }),
   computed: mapState({
-    categories: 'categories'
+    categories: "categories",
   }),
   methods: {
     ...mapMutations({
@@ -29,3 +29,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.categories-picker {
+  margin-top: 2rem;
+  width: 50%;
+  min-width: 164px;
+}
+</style>

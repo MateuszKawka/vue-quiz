@@ -54,5 +54,27 @@ export default {
 <style scoped>
 .highscores-table {
   margin-top: 10%;
+  width: 100%;
+}
+
+@media all and (min-width: 400px) {
+  .highscores-table {
+    width: 90%;
+    margin: 10% auto 0 auto;
+  }
+}
+
+@media all and (min-width: 500px) {
+  .highscores-table {
+    width: 80%;
+    margin: 10% auto 0 auto;
+  }
+}
+
+@media all and (min-width: 600px) {
+  .highscores-table {
+    width: 60%;
+    margin: 10% auto 0 auto;
+  }
 }
 </style>

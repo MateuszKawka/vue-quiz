@@ -1,60 +1,61 @@
 <template>
-  <div class="container">
-    <Timer @end-time="endTime" ref="timer" :question-answered="questionAnswered"/>
+  <div class="container-fluid  ">
+    <Timer
+      @end-time="endTime"
+      ref="timer"
+      :question-answered="questionAnswered"
+    />
     <p class="category" v-html="question.category"></p>
     <p class="question" v-html="question.question"></p>
     <div class="row at-row flex-center">
-      <div class="col-24">
-        <div class="answers" ref="answers">
+      <div class="col-22">
+        <div class="row at-row answers" ref="answers">
           <button
-              size="large"
-              class="answer-button"
-              v-for="answer in answers"
-              :key="`${question.question}__${answer}`"
-              @click.stop="answerQuestion"
-              :data-answer="answer"
-              v-html="answer"
-          >
-          </button>
+            size="large"
+            class="answer-button col-24 col-md-12"
+            v-for="answer in answers"
+            :key="`${question.question}__${answer}`"
+            @click.stop="answerQuestion"
+            :data-answer="answer"
+            v-html="answer"
+          ></button>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-24 flex-center">
         <at-button
-            class="next-question-button"
-            type="primary"
-            @click="nextQuestion"
-            size="large"
-            v-if="questionAnswered && lifes > 0"
-        >Next
-        </at-button
-        >
+          class="next-question-button"
+          type="primary"
+          @click="nextQuestion"
+          size="large"
+          v-if="questionAnswered && lifes > 0"
+          >Next
+        </at-button>
         <at-button
-            class="next-question-button"
-            type="primary"
-            @click.native="goToEndgame"
-            size="large"
-            v-if="lifes <= 0"
-        >Go to endgame
-        </at-button
-        >
+          class="next-question-button"
+          type="primary"
+          @click.native="goToEndgame"
+          size="large"
+          v-if="lifes <= 0"
+          >Go to endgame
+        </at-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {shuffleAnswers} from "@/common/helpers";
-import {mapMutations, mapState} from "vuex";
-import {LOSE_LIFE, ADD_POINTS} from "@/store/mutations.types";
-import {ENDGAME_ROUTE} from "@/router/routes";
-import Timer from "@/components/Timer"
+import { shuffleAnswers } from "@/common/helpers";
+import { mapMutations, mapState } from "vuex";
+import { LOSE_LIFE, ADD_POINTS } from "@/store/mutations.types";
+import { ENDGAME_ROUTE } from "@/router/routes";
+import Timer from "@/components/Timer";
 
 export default {
   name: "Question",
   components: {
-    Timer
+    Timer,
   },
   data: () => ({
     questionAnswered: false,
@@ -62,7 +63,7 @@ export default {
   computed: {
     ...mapState({
       question: "question",
-      lifes: "lifes"
+      lifes: "lifes",
     }),
     answers() {
       return shuffleAnswers([
@@ -86,7 +87,7 @@ export default {
         this.addPoints();
       } else {
         el.target.classList.add(`answer-button--wrong-answer`);
-        this.badAnswer()
+        this.badAnswer();
       }
       this.questionAnswered = true;
     },
@@ -104,7 +105,7 @@ export default {
     },
     nextQuestion() {
       this.$emit("next-question");
-      this.$refs.timer.resetTimer()
+      this.$refs.timer.resetTimer();
       this.questionAnswered = false;
     },
     goToEndgame() {
@@ -113,15 +114,15 @@ export default {
     endTime() {
       this.badAnswer();
       this.questionAnswered = true;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
 .answers {
-  display: flex;
-  flex-flow: column wrap;
+  /* display: flex;
+  flex-flow: column wrap; */
 }
 
 .category {
@@ -135,10 +136,6 @@ export default {
   font-size: 1rem;
 }
 
-.answer-button {
-  margin-top: 0.5rem;
-}
-
 .next-question-button {
   margin-top: 2rem;
 }
@@ -150,6 +147,8 @@ export default {
   background: #fff;
   border: 1px solid #bbcdee;
   border-radius: 4px;
+   margin-top: 0.5rem;
+  width:90%;
 }
 
 .answer-button--correct-answer {

@@ -1,5 +1,5 @@
 <template>
-  <at-radio-group  :value="pickedDifficulty" @input="pickDifficulty">
+  <at-radio-group :value="pickedDifficulty" @input="pickDifficulty">
     <at-radio-button label="easy">Easy</at-radio-button>
     <at-radio-button label="medium">Medium</at-radio-button>
     <at-radio-button label="hard">Hard</at-radio-button>
@@ -13,7 +13,7 @@ import { SET_DIFFICULTY } from "@/store/mutations.types";
 export default {
   name: "CategoriesPicker",
   computed: mapState({
-    pickedDifficulty: 'pickedDifficulty'
+    pickedDifficulty: "pickedDifficulty",
   }),
   methods: {
     ...mapMutations({

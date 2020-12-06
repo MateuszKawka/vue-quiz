@@ -23,7 +23,7 @@
 
 <script>
 import { GET_CATEGORIES } from "@/store/actions.types";
-import {INIT_GLOBAL_STATE} from "@/store/mutations.types"
+import { INIT_GLOBAL_STATE } from "@/store/mutations.types";
 import CategoriesPicker from "@/components/CategoriesPicker";
 import { GAME_ROUTE, HIGHSCORES_ROUTE } from "@/router/routes";
 import DifficultyPicker from "@/components/DifficultyPicker.vue";
@@ -35,7 +35,7 @@ export default {
   }),
   components: {
     CategoriesPicker,
-    DifficultyPicker
+    DifficultyPicker,
   },
   methods: {
     startGame() {
@@ -44,7 +44,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch(GET_CATEGORIES);
-    this.$store.commit(INIT_GLOBAL_STATE)
+    this.$store.commit(INIT_GLOBAL_STATE);
   },
 };
 </script>
@@ -70,10 +70,30 @@ export default {
 }
 
 .home__start-button {
-  margin-top: 20%;
+  width: 30%;
+  min-width: 164px;
+  margin: 20% auto 0 auto;
 }
 
 .home__highscores-link {
   margin-top: 10%;
+}
+
+@media all and (min-width: 900px) {
+  .home__category-picker {
+    margin-top: 10%;
+  }
+
+  .home__difficulty-picker {
+    margin: 5% auto 0 auto;
+  }
+
+  .home__start-button {
+    margin: 10% auto 0 auto;
+  }
+
+  .home {
+    padding-top: 5%;
+  }
 }
 </style>
