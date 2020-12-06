@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d8bb1fc74ee20acca273",
-    "url": "/vue-quiz/css/app.b8e8774a.css"
+    "revision": "8f655d375b4c870275ba",
+    "url": "/vue-quiz/css/app.2cde29fd.css"
   },
   {
-    "revision": "5a2397b422a269944faf",
-    "url": "/vue-quiz/css/chunk-18d0fef1.23e63752.css"
+    "revision": "d30d27ec5599d6c4aee8",
+    "url": "/vue-quiz/css/chunk-42717b2f.cf5c1a92.css"
   },
   {
-    "revision": "b444e73a5781635b7126",
-    "url": "/vue-quiz/css/chunk-d15d4dbc.60d7cc32.css"
+    "revision": "1559481161dbb217712e",
+    "url": "/vue-quiz/css/chunk-549b3ac8.cfb7b860.css"
   },
   {
     "revision": "76a9fd538b3642667462",
     "url": "/vue-quiz/css/chunk-vendors.4db5c369.css"
   },
   {
-    "revision": "cd5a0806547bae1fc9ea",
-    "url": "/vue-quiz/css/game.c01c1e90.css"
+    "revision": "08417c21b2fd4d9a12eb",
+    "url": "/vue-quiz/css/game.b41a7c85.css"
   },
   {
     "revision": "5fad700adc948cb51404d55833347f51",
@@ -36,28 +36,28 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/vue-quiz/img/feather.023ba082.svg"
   },
   {
-    "revision": "096aae9d9131021323c056cad24a6803",
+    "revision": "0cd97a0a73a76bf325f928c073a42496",
     "url": "/vue-quiz/index.html"
   },
   {
-    "revision": "d8bb1fc74ee20acca273",
-    "url": "/vue-quiz/js/app.0bbcedf6.js"
+    "revision": "8f655d375b4c870275ba",
+    "url": "/vue-quiz/js/app.60a94d5e.js"
   },
   {
-    "revision": "5a2397b422a269944faf",
-    "url": "/vue-quiz/js/chunk-18d0fef1.4aa4cb8b.js"
+    "revision": "d30d27ec5599d6c4aee8",
+    "url": "/vue-quiz/js/chunk-42717b2f.e0182a5c.js"
   },
   {
-    "revision": "b444e73a5781635b7126",
-    "url": "/vue-quiz/js/chunk-d15d4dbc.7b0e6c91.js"
+    "revision": "1559481161dbb217712e",
+    "url": "/vue-quiz/js/chunk-549b3ac8.46b90244.js"
   },
   {
     "revision": "76a9fd538b3642667462",
     "url": "/vue-quiz/js/chunk-vendors.e250020d.js"
   },
   {
-    "revision": "cd5a0806547bae1fc9ea",
-    "url": "/vue-quiz/js/game.bb1e5423.js"
+    "revision": "08417c21b2fd4d9a12eb",
+    "url": "/vue-quiz/js/game.4dc572c3.js"
   },
   {
     "revision": "3fdef390786d44aef1f5c613d4cc99d5",
